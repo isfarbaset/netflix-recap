@@ -1,0 +1,49 @@
+---
+title: "About"
+format:
+  html:
+    toc: false
+---
+
+## About Netflix Wrapped
+
+This project creates a personalized "Year in Review" summary of your Netflix viewing habits, inspired by Spotify Wrapped and similar end-of-year recaps.
+
+### How It Works
+
+1. **Download your Netflix data** from your account settings
+2. **Run the processing script** to analyze your viewing history
+3. **View your personalized Wrapped** with stats, insights, and fun facts
+
+### Getting Your Netflix Data
+
+1. Go to [Netflix.com](https://netflix.com) and sign in
+2. Click your profile icon > **Account**
+3. Scroll down to **Security & Privacy**
+4. Click **Download your personal information**
+5. Select **Viewing Activity** (or download all)
+6. Wait for the email from Netflix (can take up to 30 days)
+7. Download and extract the ZIP file
+8. Find `ViewingActivity.csv` and place it in the `data/` folder
+
+### Privacy
+
+- All data processing happens locally on your machine
+- No data is sent to any external servers
+- Your viewing history stays private
+
+### Built With
+
+- **Python** - Data processing and analysis
+- **Quarto** - Static site generation
+- **GitHub Pages** - Free hosting
+
+### Source Code
+
+This project is open source. Feel free to fork it and create your own Wrapped!
+
+[View on GitHub](https://github.com/YOUR_USERNAME/netflix-wrapped){.btn .btn-primary style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--netflix-red); border: none; border-radius: 8px; text-decoration: none; color: white; font-weight: bold;"}
+
+---
+
+Created with data, coffee, and a love for good television.

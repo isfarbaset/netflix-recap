@@ -1,0 +1,225 @@
+---
+title: "Insights"
+format:
+  html:
+    toc: true
+execute:
+  echo: false
+jupyter: python3
+---
+
+```{python}
+#| include: false
+import json
+from pathlib import Path
+
+stats_file = Path("data/wrapped_stats.json")
+if stats_file.exists():
+    with open(stats_file) as f:
+        stats = json.load(f)
+else:
+    stats = {
+        "year": 2024,
+        "total_titles_watched": 847,
+        "estimated_hours": 635,
+        "estimated_days": 26.5,
+        "personality": {
+            "type": "The Binge Master",
+            "description": "One more episode? Make that ten."
+        },
+        "fun_facts": [
+            "You could have flown to Tokyo 45.4 times with your watch time.",
+            "In this time, you could have read approximately 106 books."
+        ]
+    }
+```
+
+
+## Your Viewing Personality
+
+Based on your watching patterns, we have analyzed your streaming style.
+
+::: {.personality-badge}
+::: {.type}
+`{python} stats.get('personality', {}).get('type', 'The Viewer')`
+:::
+::: {.description}
+`{python} stats.get('personality', {}).get('description', 'You have unique viewing habits.')`
+:::
+:::
+
+
+## By The Numbers
+
+Let us put your streaming into perspective.
+
+```{python}
+#| output: asis
+hours = stats.get("estimated_hours", 0)
+days = stats.get("estimated_days", 0)
+total = stats.get("total_titles_watched", 0)
+
+# Calculate fun comparisons
+flights_to_london = round(hours / 8, 1)
+marathons = round(hours / 4.5, 1)
+audiobooks = round(hours / 10)
+work_weeks = round(hours / 40, 1)
+
+comparisons = [
+    {
+        "title": "Flights to London",
+        "value": flights_to_london,
+        "detail": "Based on 8-hour flight time"
+    },
+    {
+        "title": "Marathon Movies",
+        "value": marathons,
+        "detail": "If each movie was 4.5 hours"
+    },
+    {
+        "title": "Audiobooks",
+        "value": audiobooks,
+        "detail": "At 10 hours per book"
+    },
+    {
+        "title": "Work Weeks",
+        "value": work_weeks,
+        "detail": "Based on 40-hour weeks"
+    }
+]
+
+print('<div class="stats-grid">')
+for comp in comparisons:
+    print(f'''
+    <div class="stat-card">
+        <div class="number" style="font-size: 3rem;">{comp["value"]}</div>
+        <div class="label">{comp["title"]}</div>
+        <div class="detail">{comp["detail"]}</div>
+    </div>
+    ''')
+print('</div>')
+```
+
+
+## Time Well Spent?
+
+Here is what `{python} f"{hours:,.0f}"` hours looks like in different contexts.
+
+```{python}
+#| output: asis
+
+insights = []
+
+if hours > 100:
+    insights.append({
+        "text": f"You spent {days:.1f} full days watching Netflix this year. That is more than most people spend on vacation.",
+        "highlight": f"{days:.1f} days"
+    })
+
+if hours > 200:
+    meals = round(hours * 2)
+    insights.append({
+        "text": f"In this time, you could have cooked approximately {meals:,} home-cooked meals. But takeout pairs better with TV anyway.",
+        "highlight": f"{meals:,} meals"
+    })
+
+if hours > 300:
+    insights.append({
+        "text": "You are in the top tier of Netflix viewers. The algorithm knows you better than your family does.",
+        "highlight": "top tier"
+    })
+
+if hours > 500:
+    insights.append({
+        "text": "At this point, Netflix should be paying YOU for quality assurance testing.",
+        "highlight": "quality assurance"
+    })
+
+for insight in insights:
+    text = insight["text"].replace(insight["highlight"], f'<span class="highlight">{insight["highlight"]}</span>')
+    print(f'<div class="fun-fact">{text}</div>')
+```
+
+
+## Patterns We Noticed
+
+```{python}
+#| output: asis
+peak_time = stats.get("peak_time", "Evening")
+fav_day = stats.get("favorite_day", "Saturday")
+peak_month = stats.get("peak_month", "October")
+streak = stats.get("longest_streak", 0)
+
+patterns = [
+    f"You are a **{peak_time}** watcher. Most of your viewing happens during this window.",
+    f"**{fav_day}** is your power day. You watch more on this day than any other.",
+    f"**{peak_month}** was your streaming peak. Something about that month just hit different.",
+]
+
+if streak > 14:
+    patterns.append(f"Your **{streak}-day streak** suggests you found something really good. Or really long.")
+elif streak > 7:
+    patterns.append(f"A **{streak}-day streak** shows solid commitment to your shows.")
+
+for pattern in patterns:
+    print(f'<div class="fun-fact">{pattern}</div>')
+```
+
+
+## What Your Data Says About You
+
+Based on your viewing habits, here are some observations:
+
+```{python}
+#| output: asis
+binges = stats.get("binge_sessions", 0)
+unique = stats.get("unique_shows", 0)
+total = stats.get("total_titles_watched", 0)
+
+observations = []
+
+# Variety vs loyalty
+if unique > 0:
+    avg_per_show = total / unique
+    if avg_per_show > 5:
+        observations.append("You tend to commit to shows you start. Once you are in, you are ALL in.")
+    else:
+        observations.append("You like variety. Always sampling, always exploring new content.")
+
+# Binge behavior
+if binges > 30:
+    observations.append("You are a power binger. Cliffhangers do not stand a chance against you.")
+elif binges > 10:
+    observations.append("You know when to binge and when to pace yourself. A balanced viewer.")
+else:
+    observations.append("You prefer to savor your shows. One or two episodes at a time, like a fine wine.")
+
+# Time preference
+if "Night" in peak_time:
+    observations.append("Night owl energy. The best content comes out when the world is quiet.")
+elif "Morning" in peak_time:
+    observations.append("An early bird viewer. Starting the day with entertainment takes discipline.")
+elif "Evening" in peak_time:
+    observations.append("Classic evening viewer. Winding down with Netflix is your ritual.")
+
+for obs in observations:
+    print(f'<div class="fun-fact">{obs}</div>')
+```
+
+
+## Final Thoughts
+
+You spent `{python} f"{hours:,.0f}"` hours streaming this year. That is:
+
+- Stories that made you laugh
+- Plot twists that kept you up way too late  
+- Characters you grew attached to
+- Worlds you escaped into
+
+Not a single hour wasted.
+
+::: {.wrapped-footer}
+::: {.tagline}
+Now go take a break. You have earned it!
+:::
+:::

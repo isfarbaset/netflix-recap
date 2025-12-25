@@ -1,0 +1,224 @@
+---
+title: "Your Stats"
+format:
+  html:
+    toc: true
+execute:
+  echo: false
+jupyter: python3
+---
+
+```{python}
+#| include: false
+import json
+from pathlib import Path
+
+stats_file = Path("data/wrapped_stats.json")
+if stats_file.exists():
+    with open(stats_file) as f:
+        stats = json.load(f)
+else:
+    # Sample data
+    stats = {
+        "year": 2024,
+        "total_titles_watched": 847,
+        "unique_shows": 156,
+        "estimated_hours": 635,
+        "top_shows": [
+            {"title": "Breaking Bad", "count": 62},
+            {"title": "The Office", "count": 48},
+            {"title": "Stranger Things", "count": 45},
+            {"title": "Money Heist", "count": 38},
+            {"title": "Dark", "count": 32},
+            {"title": "Narcos", "count": 28},
+            {"title": "Black Mirror", "count": 24},
+            {"title": "Ozark", "count": 22},
+            {"title": "The Crown", "count": 20},
+            {"title": "Mindhunter", "count": 18}
+        ],
+        "monthly_breakdown": {
+            "January": 65, "February": 58, "March": 72, "April": 68,
+            "May": 55, "June": 62, "July": 78, "August": 85,
+            "September": 92, "October": 112, "November": 98, "December": 102
+        },
+        "day_of_week": {
+            "Monday": 98, "Tuesday": 105, "Wednesday": 112, "Thursday": 118,
+            "Friday": 145, "Saturday": 186, "Sunday": 163
+        },
+        "time_categories": {
+            "Morning (6am-12pm)": 85,
+            "Afternoon (12pm-6pm)": 198,
+            "Evening (6pm-10pm)": 412,
+            "Night Owl (10pm-6am)": 152
+        }
+    }
+```
+
+
+## Top 10 Shows
+
+The shows that defined your year.
+
+```{python}
+#| output: asis
+top_shows = stats.get("top_shows", [])
+
+print('<ol class="top-list">')
+for show in top_shows[:10]:
+    title = show.get("title", "Unknown")
+    count = show.get("count", 0)
+    print(f'''
+    <li>
+        <div>
+            <div class="title">{title}</div>
+            <div class="meta">{count} episodes watched</div>
+        </div>
+    </li>
+    ''')
+print('</ol>')
+```
+
+
+## Monthly Breakdown
+
+See how your watching habits changed throughout the year.
+
+```{python}
+#| output: asis
+import calendar
+
+monthly = stats.get("monthly_breakdown", {})
+max_val = max(monthly.values()) if monthly.values() else 1
+
+print('<div style="background: var(--netflix-dark); border-radius: 16px; padding: 2rem;">')
+print('<div class="month-bars" style="height: 250px;">')
+for month in calendar.month_name[1:]:
+    count = monthly.get(month, 0)
+    height = (count / max_val) * 220 if max_val > 0 else 10
+    print(f'<div class="month-bar" style="height: {height}px;" title="{month}: {count}"></div>')
+print('</div>')
+
+print('<div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">')
+for month in calendar.month_abbr[1:]:
+    print(f'<span class="month-label">{month}</span>')
+print('</div>')
+print('</div>')
+
+# Stats below chart
+print('<div class="stats-grid" style="margin-top: 2rem;">')
+peak = max(monthly, key=monthly.get) if monthly else "Unknown"
+lowest = min(monthly, key=monthly.get) if monthly else "Unknown"
+print(f'''
+<div class="stat-card">
+    <div class="number" style="font-size: 2rem;">{peak}</div>
+    <div class="label">Peak Month</div>
+    <div class="detail">{monthly.get(peak, 0)} titles watched</div>
+</div>
+<div class="stat-card">
+    <div class="number" style="font-size: 2rem;">{lowest}</div>
+    <div class="label">Slowest Month</div>
+    <div class="detail">{monthly.get(lowest, 0)} titles watched</div>
+</div>
+''')
+print('</div>')
+```
+
+
+## Day of the Week
+
+Which days did you watch the most?
+
+```{python}
+#| output: asis
+dow = stats.get("day_of_week", {})
+max_dow = max(dow.values()) if dow.values() else 1
+
+print('<div style="background: var(--netflix-dark); border-radius: 16px; padding: 2rem;">')
+
+for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]:
+    count = dow.get(day, 0)
+    width = (count / max_dow) * 100 if max_dow > 0 else 0
+    is_peak = count == max_dow
+    color = "var(--netflix-red)" if is_peak else "rgba(229, 9, 20, 0.5)"
+    
+    print(f'''
+    <div style="margin: 1rem 0;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span style="font-weight: {'bold' if is_peak else 'normal'};">{day}</span>
+            <span style="color: var(--netflix-gray);">{count}</span>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 24px; overflow: hidden;">
+            <div style="background: {color}; height: 100%; width: {width}%; border-radius: 4px; transition: width 0.5s ease;"></div>
+        </div>
+    </div>
+    ''')
+
+print('</div>')
+```
+
+
+## Time of Day
+
+When do you usually watch?
+
+```{python}
+#| output: asis
+time_cats = stats.get("time_categories", {})
+total_time = sum(time_cats.values()) if time_cats else 1
+
+print('<div class="stats-grid">')
+for time_slot, count in time_cats.items():
+    pct = round((count / total_time) * 100) if total_time > 0 else 0
+    icon = ""
+    if "Morning" in time_slot:
+        icon = "sunrise icon"
+    elif "Afternoon" in time_slot:
+        icon = "sun icon"  
+    elif "Evening" in time_slot:
+        icon = "sunset icon"
+    else:
+        icon = "moon icon"
+    
+    print(f'''
+    <div class="stat-card">
+        <div class="number" style="font-size: 2.5rem;">{pct}%</div>
+        <div class="label" style="font-size: 0.9rem;">{time_slot}</div>
+        <div class="detail">{count} titles</div>
+    </div>
+    ''')
+print('</div>')
+```
+
+
+## Binge Watching Stats
+
+Because sometimes one episode is never enough.
+
+```{python}
+#| output: asis
+binges = stats.get("binge_sessions", 0)
+biggest = stats.get("biggest_binge", 0)
+biggest_show = stats.get("biggest_binge_show", "Unknown")
+streak = stats.get("longest_streak", 0)
+
+print('<div class="stats-grid">')
+print(f'''
+<div class="stat-card">
+    <div class="number">{binges}</div>
+    <div class="label">Binge Sessions</div>
+    <div class="detail">3+ episodes in one day</div>
+</div>
+<div class="stat-card">
+    <div class="number">{biggest}</div>
+    <div class="label">Biggest Binge</div>
+    <div class="detail">{biggest_show} in one sitting</div>
+</div>
+<div class="stat-card">
+    <div class="number">{streak}</div>
+    <div class="label">Day Streak</div>
+    <div class="detail">Consecutive days watching</div>
+</div>
+''')
+print('</div>')
+```
+
