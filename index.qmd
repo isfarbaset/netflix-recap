@@ -11,6 +11,7 @@ jupyter: python3
 ```{python}
 #| include: false
 import json
+import re
 from pathlib import Path
 
 # Load stats
@@ -54,6 +55,16 @@ else:
             "May": 58, "June": 64, "July": 82, "August": 89,
             "September": 96, "October": 108, "November": 118, "December": 22
         },
+        "day_of_week": {
+            "Monday": 98, "Tuesday": 105, "Wednesday": 112, "Thursday": 118,
+            "Friday": 145, "Saturday": 198, "Sunday": 163
+        },
+        "time_categories": {
+            "Morning (6am-12pm)": 85,
+            "Afternoon (12pm-6pm)": 198,
+            "Evening (6pm-10pm)": 456,
+            "Night Owl (10pm-6am)": 184
+        },
         "fun_facts": [
             "You could have flown to Tokyo 49.4 times with your watch time.",
             "In this time, you could have read approximately 115 books. But who is counting?",
@@ -61,6 +72,10 @@ else:
             "With 42 binge sessions, you have mastered the art of just one more episode."
         ]
     }
+
+def highlight_numbers(text):
+    """Highlight numbers in text with span tags."""
+    return re.sub(r'(\d+\.?\d*)', r'<span class="highlight">\1</span>', text)
 
 year = stats.get("year", 2025)
 hours = stats.get("estimated_hours", 0)
@@ -71,6 +86,7 @@ top_show = stats.get("number_one_show", "Unknown")
 top_count = stats.get("number_one_count", 0)
 personality = stats.get("personality", {})
 active_days = stats.get("active_days", 0)
+top_shows = stats.get("top_shows", [])
 ```
 
 ::: {.hero}
@@ -169,26 +185,57 @@ YOUR STREAMING PERSONALITY
 YOUR NUMBER ONE
 :::
 
-::: {.stat-card style="max-width: 700px; margin: 0 auto; text-align: center;"}
-::: {.number style="font-size: 3rem;"}
-`{python} top_show`
-:::
-::: {.label}
-Most Watched Show of the Year
-:::
-::: {.detail}
-You watched `{python} top_count` episodes. A true fan.
-:::
+```{python}
+#| output: asis
+# Create a visually striking number one showcase
+print(f'''
+<div class="number-one-showcase">
+    <div class="trophy-icon">1</div>
+    <div class="show-title">{top_show}</div>
+    <div class="show-stats">
+        <span class="episode-count">{top_count}</span> episodes watched
+    </div>
+    <div class="show-bar-container">
+        <div class="show-bar" style="width: 100%;"></div>
+    </div>
+</div>
+''')
+```
+
+::: {.section-title style="font-size: 2rem; margin-top: 3rem;"}
+TOP 5 SHOWS
 :::
 
-[See All Your Stats](/stats.html){.btn-netflix style="display: block; width: fit-content; margin: 3rem auto;"}
+```{python}
+#| output: asis
+# Create horizontal bar chart for top shows
+if top_shows:
+    max_count = top_shows[0]["count"] if top_shows else 1
+    print('<div class="top-shows-chart">')
+    for i, show in enumerate(top_shows[:5]):
+        width = (show["count"] / max_count) * 100
+        rank_class = "gold" if i == 0 else "silver" if i == 1 else "bronze" if i == 2 else ""
+        print(f'''
+        <div class="show-row">
+            <div class="show-rank {rank_class}">{i + 1}</div>
+            <div class="show-info">
+                <div class="show-name">{show["title"]}</div>
+                <div class="show-bar-bg">
+                    <div class="show-bar-fill" style="width: {width}%;"></div>
+                </div>
+            </div>
+            <div class="show-count">{show["count"]}</div>
+        </div>
+        ''')
+    print('</div>')
+```
 
 :::
 
 
 ::: {.wrapped-section}
 ::: {.section-title}
-WHEN YOU WATCHED
+YOUR YEAR AT A GLANCE
 :::
 
 ```{python}
@@ -196,26 +243,115 @@ WHEN YOU WATCHED
 monthly = stats.get("monthly_breakdown", {})
 if monthly:
     max_val = max(monthly.values()) if monthly.values() else 1
+    peak_month = max(monthly, key=monthly.get)
     
+    print('<div class="monthly-chart-container">')
     print('<div class="month-bars">')
-    for month in ["January", "February", "March", "April", "May", "June", 
-                  "July", "August", "September", "October", "November", "December"]:
+    months = ["January", "February", "March", "April", "May", "June", 
+              "July", "August", "September", "October", "November", "December"]
+    labels = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    
+    for month, label in zip(months, labels):
         count = monthly.get(month, 0)
         height = (count / max_val) * 200 if max_val > 0 else 10
-        print(f'<div class="month-bar" style="height: {height}px;" title="{month}: {count}"></div>')
+        is_peak = month == peak_month
+        peak_class = "peak" if is_peak else ""
+        print(f'''
+        <div class="month-column">
+            <div class="month-value">{count}</div>
+            <div class="month-bar {peak_class}" style="height: {height}px;"></div>
+            <div class="month-label">{label}</div>
+        </div>
+        ''')
     print('</div>')
-    
-    print('<div style="display: flex; justify-content: space-between; padding: 0 2rem; margin-top: 0.5rem;">')
-    for month in ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]:
-        print(f'<span class="month-label">{month}</span>')
+    print(f'<div class="peak-indicator">Peak: <span class="highlight">{peak_month}</span> with <span class="highlight">{monthly[peak_month]}</span> titles</div>')
     print('</div>')
 ```
 
-::: {.stat-card style="margin-top: 3rem; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;"}
-::: {.detail style="font-size: 1.2rem;"}
-Peak month: **`{python} stats.get('peak_month', 'Unknown')`** with `{python} stats.get('peak_month_count', 0)` titles watched
 :::
+
+
+::: {.wrapped-section}
+::: {.section-title}
+WHEN YOU WATCH
 :::
+
+```{python}
+#| output: asis
+# Day of week donut/ring visualization
+dow = stats.get("day_of_week", {})
+time_cats = stats.get("time_categories", {})
+
+if dow:
+    total_dow = sum(dow.values())
+    max_dow = max(dow.values())
+    fav_day = max(dow, key=dow.get)
+    
+    print('<div class="when-grid">')
+    
+    # Day of week bars
+    print('<div class="day-chart">')
+    print('<h3 class="chart-subtitle">By Day</h3>')
+    days_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    days_full = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
+    for short, full in zip(days_order, days_full):
+        count = dow.get(full, 0)
+        width = (count / max_dow) * 100 if max_dow > 0 else 0
+        is_fav = full == fav_day
+        fav_class = "favorite" if is_fav else ""
+        print(f'''
+        <div class="day-row {fav_class}">
+            <span class="day-name">{short}</span>
+            <div class="day-bar-bg">
+                <div class="day-bar-fill" style="width: {width}%;"></div>
+            </div>
+            <span class="day-count">{count}</span>
+        </div>
+        ''')
+    print(f'<div class="chart-note">Favorite day: <span class="highlight">{fav_day}</span></div>')
+    print('</div>')
+    
+    # Time of day breakdown
+    if time_cats:
+        total_time = sum(time_cats.values())
+        print('<div class="time-chart">')
+        print('<h3 class="chart-subtitle">By Time</h3>')
+        
+        time_icons = {
+            "Morning (6am-12pm)": "morning",
+            "Afternoon (12pm-6pm)": "afternoon", 
+            "Evening (6pm-10pm)": "evening",
+            "Night Owl (10pm-6am)": "night"
+        }
+        time_labels = {
+            "Morning (6am-12pm)": "Morning",
+            "Afternoon (12pm-6pm)": "Afternoon",
+            "Evening (6pm-10pm)": "Evening",
+            "Night Owl (10pm-6am)": "Night"
+        }
+        
+        max_time = max(time_cats.values())
+        fav_time = max(time_cats, key=time_cats.get)
+        
+        for time_slot, count in time_cats.items():
+            pct = round((count / total_time) * 100) if total_time > 0 else 0
+            icon = time_icons.get(time_slot, "")
+            label = time_labels.get(time_slot, time_slot)
+            is_fav = time_slot == fav_time
+            fav_class = "favorite" if is_fav else ""
+            
+            print(f'''
+            <div class="time-block {fav_class}">
+                <div class="time-pct">{pct}%</div>
+                <div class="time-label">{label}</div>
+                <div class="time-count">{count} titles</div>
+            </div>
+            ''')
+        print('</div>')
+    
+    print('</div>')
+```
 
 :::
 
@@ -228,18 +364,66 @@ DID YOU KNOW?
 ```{python}
 #| output: asis
 facts = stats.get("fun_facts", [])
-for fact in facts:
-    print(f'<div class="fun-fact">{fact}</div>')
 
-# Add some extra stats as fun facts
+# Highlight numbers in fun facts
+for fact in facts:
+    highlighted = highlight_numbers(fact)
+    print(f'<div class="fun-fact">{highlighted}</div>')
+
+# Add some extra stats as fun facts with highlights
 streak = stats.get("longest_streak", 0)
 binges = stats.get("binge_sessions", 0)
 fav_day = stats.get("favorite_day", "Unknown")
+biggest_binge = stats.get("biggest_binge", 0)
+biggest_binge_show = stats.get("biggest_binge_show", "Unknown")
 
 print(f'<div class="fun-fact">Your favorite day to watch was <span class="highlight">{fav_day}</span>.</div>')
-print(f'<div class="fun-fact">You went on a <span class="highlight">{streak}-day</span> watching streak. Commitment level: expert.</div>')
+print(f'<div class="fun-fact">You went on a <span class="highlight">{streak}</span>-day watching streak. Commitment level: expert.</div>')
 if binges > 0:
     print(f'<div class="fun-fact">You had <span class="highlight">{binges}</span> official binge sessions this year.</div>')
+if biggest_binge > 0:
+    print(f'<div class="fun-fact">Your biggest binge was <span class="highlight">{biggest_binge}</span> episodes of <span class="highlight">{biggest_binge_show}</span> in one day.</div>')
+```
+
+:::
+
+
+::: {.wrapped-section}
+::: {.section-title}
+YOUR YEAR VISUALIZED
+:::
+
+```{python}
+#| output: asis
+# Create a visual calendar heatmap-style summary
+completion_rate = round((stats.get("completed_items", total) / total * 100)) if total > 0 else 0
+avg_per_day = round(total / 365, 1)
+avg_per_week = round(total / 52, 1)
+
+print(f'''
+<div class="year-summary-grid">
+    <div class="summary-card">
+        <div class="summary-icon">AVG</div>
+        <div class="summary-number">{avg_per_day}</div>
+        <div class="summary-label">Titles per Day</div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-icon">WK</div>
+        <div class="summary-number">{avg_per_week}</div>
+        <div class="summary-label">Titles per Week</div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-icon">TOP</div>
+        <div class="summary-number">{stats.get("peak_month_count", 0)}</div>
+        <div class="summary-label">Best Month</div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-icon">RUN</div>
+        <div class="summary-number">{streak}</div>
+        <div class="summary-label">Day Streak</div>
+    </div>
+</div>
+''')
 ```
 
 :::

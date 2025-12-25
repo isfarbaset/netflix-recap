@@ -1,595 +1,739 @@
-/* Netflix Wrapped 2025 - Premium Styles */
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap');
+/* Netflix Wrapped Styles - Premium Edition */
 
 :root {
-  --netflix-red: #E50914;
-  --netflix-red-dark: #B20710;
-  --netflix-red-glow: rgba(229, 9, 20, 0.4);
-  --netflix-black: #0a0a0a;
-  --netflix-dark: #141414;
-  --netflix-darker: #0d0d0d;
-  --netflix-card: #1a1a1a;
-  --netflix-gray: #808080;
-  --netflix-light-gray: #b3b3b3;
-  --netflix-white: #FFFFFF;
-  --gradient-hero: linear-gradient(180deg, #E50914 0%, #831010 30%, #141414 100%);
-  --gradient-card: linear-gradient(145deg, #1f1f1f 0%, #141414 100%);
-  --gradient-red: linear-gradient(135deg, #E50914 0%, #B20710 100%);
-  --gradient-shine: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  --shadow-glow: 0 0 60px rgba(229, 9, 20, 0.3);
-  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
+    --netflix-red: #E50914;
+    --netflix-black: #141414;
+    --netflix-dark: #181818;
+    --netflix-gray: #808080;
+    --netflix-light: #e5e5e5;
+    --netflix-gold: #FFD700;
+    --netflix-silver: #C0C0C0;
+    --netflix-bronze: #CD7F32;
+    --gradient-red: linear-gradient(135deg, #E50914 0%, #B81D24 100%);
+    --gradient-dark: linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
+    --glow-red: 0 0 40px rgba(229, 9, 20, 0.4);
 }
 
-* {
-  box-sizing: border-box;
-}
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
 
 body {
-  background-color: var(--netflix-black);
-  color: var(--netflix-white);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
+    background: var(--netflix-black);
+    color: var(--netflix-light);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* Remove default Quarto margins */
-.page-layout-full .content {
-  padding: 0;
+/* Hide default Quarto elements */
+.navbar, #quarto-header, .nav-footer, #quarto-sidebar {
+    display: none !important;
 }
 
 main.content {
-  margin: 0;
-  padding: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.quarto-title {
+    display: none;
 }
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: var(--gradient-hero);
-  padding: 6rem 2rem;
-  margin: -1rem -1rem 0 -1rem;
-  position: relative;
-  overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--gradient-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
 }
 
 .hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at center top, rgba(229, 9, 20, 0.3) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(to top, var(--netflix-dark), transparent);
-  pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.15) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .hero h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 8px;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 4px 30px rgba(0,0,0,0.5);
-  position: relative;
-  z-index: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 15vw, 10rem);
+    color: var(--netflix-red);
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 60px rgba(229, 9, 20, 0.5);
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { text-shadow: 0 0 60px rgba(229, 9, 20, 0.5); }
+    50% { text-shadow: 0 0 80px rgba(229, 9, 20, 0.7); }
 }
 
 .hero .subtitle {
-  font-size: 1.4rem;
-  font-weight: 300;
-  opacity: 0.9;
-  margin-bottom: 3rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 1;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--netflix-gray);
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 300;
 }
 
 .hero .year {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 12rem;
-  font-weight: 400;
-  color: var(--netflix-white);
-  text-shadow: 0 0 80px var(--netflix-red-glow), 0 0 120px var(--netflix-red-glow);
-  line-height: 1;
-  position: relative;
-  z-index: 1;
-  animation: pulse-glow 3s ease-in-out infinite;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--netflix-light);
+    margin-top: 1rem;
+    opacity: 0.9;
 }
 
-@keyframes pulse-glow {
-  0%, 100% { text-shadow: 0 0 80px var(--netflix-red-glow), 0 0 120px var(--netflix-red-glow); }
-  50% { text-shadow: 0 0 100px var(--netflix-red-glow), 0 0 160px var(--netflix-red-glow); }
-}
-
-/* Stat Cards */
-.stat-card {
-  background: var(--gradient-card);
-  border-radius: 20px;
-  padding: 2.5rem;
-  margin: 1rem 0;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-shine);
-  transition: left 0.5s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-glow), var(--shadow-card);
-  border-color: rgba(229, 9, 20, 0.3);
-}
-
-.stat-card:hover::before {
-  left: 100%;
-}
-
-.stat-card .number {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 5rem;
-  font-weight: 400;
-  color: var(--netflix-red);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  letter-spacing: 2px;
-}
-
-.stat-card .label {
-  font-size: 0.9rem;
-  color: var(--netflix-light-gray);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 600;
-}
-
-.stat-card .detail {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.5);
-  margin-top: 1rem;
-  font-weight: 300;
-}
-
-/* Section Styles */
+/* Wrapped Sections */
 .wrapped-section {
-  padding: 6rem 2rem;
-  margin: 0;
-  position: relative;
-}
-
-.wrapped-section.highlight {
-  background: var(--gradient-red);
-  margin: 4rem 0;
-  position: relative;
-}
-
-.wrapped-section.highlight::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-  pointer-events: none;
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 400;
-  margin-bottom: 3rem;
-  text-align: center;
-  letter-spacing: 6px;
-  position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--netflix-light);
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
 }
 
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: var(--netflix-red);
-  margin: 1rem auto 0;
-  border-radius: 2px;
-}
-
-/* Grid Layout */
+/* Stats Grid */
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem auto;
-  max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
-/* Top Shows List */
-.top-list {
-  list-style: none;
-  padding: 0;
-  counter-reset: rank;
-  max-width: 800px;
-  margin: 0 auto;
+.stat-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.top-list li {
-  display: flex;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  background: var(--netflix-card);
-  border-radius: 16px;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-red);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
-.top-list li:hover {
-  background: rgba(229, 9, 20, 0.15);
-  border-color: var(--netflix-red);
-  transform: translateX(10px);
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(229, 9, 20, 0.3);
+    box-shadow: var(--glow-red);
 }
 
-.top-list li::before {
-  counter-increment: rank;
-  content: counter(rank);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 400;
-  color: var(--netflix-red);
-  margin-right: 2rem;
-  min-width: 50px;
+.stat-card:hover::before {
+    transform: scaleX(1);
 }
 
-.top-list li:first-child::before {
-  color: #FFD700;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+.stat-card .number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--netflix-red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
 }
 
-.top-list li:nth-child(2)::before {
-  color: #C0C0C0;
+.stat-card .label {
+    font-size: 1rem;
+    color: var(--netflix-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
 }
 
-.top-list li:nth-child(3)::before {
-  color: #CD7F32;
+.stat-card .detail {
+    font-size: 0.85rem;
+    color: var(--netflix-gray);
+    font-weight: 300;
 }
 
-.top-list .title {
-  font-size: 1.3rem;
-  font-weight: 600;
+/* Number One Showcase */
+.number-one-showcase {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 24px;
+    border: 2px solid rgba(229, 9, 20, 0.3);
+    box-shadow: var(--glow-red);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.top-list .meta {
-  font-size: 0.9rem;
-  color: var(--netflix-gray);
-  margin-top: 0.25rem;
+.trophy-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+}
+
+.show-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--netflix-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+}
+
+.show-stats {
+    font-size: 1.25rem;
+    color: var(--netflix-gray);
+    margin-bottom: 1.5rem;
+}
+
+.episode-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--netflix-red);
+}
+
+.show-bar-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.show-bar {
+    height: 100%;
+    background: var(--gradient-red);
+    border-radius: 10px;
+    animation: fillBar 1.5s ease-out;
+}
+
+@keyframes fillBar {
+    from { width: 0; }
+}
+
+/* Top Shows Chart */
+.top-shows-chart {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.show-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.show-row:last-child {
+    border-bottom: none;
+}
+
+.show-rank {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--netflix-gray);
+    flex-shrink: 0;
+}
+
+.show-rank.gold {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.show-rank.silver {
+    background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+    color: #000;
+}
+
+.show-rank.bronze {
+    background: linear-gradient(135deg, #CD7F32, #8B5A2B);
+    color: #fff;
+}
+
+.show-info {
+    flex: 1;
+}
+
+.show-name {
+    font-weight: 500;
+    color: var(--netflix-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.show-bar-bg {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.show-bar-fill {
+    height: 100%;
+    background: var(--gradient-red);
+    border-radius: 6px;
+    transition: width 1s ease-out;
+}
+
+.show-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--netflix-red);
+    min-width: 50px;
+    text-align: right;
+}
+
+/* Monthly Chart */
+.monthly-chart-container {
+    text-align: center;
+}
+
+.month-bars {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 280px;
+    padding-bottom: 2rem;
+}
+
+.month-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 60px;
+}
+
+.month-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    color: var(--netflix-gray);
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.month-bar {
+    width: 100%;
+    max-width: 40px;
+    background: linear-gradient(180deg, #E50914 0%, #831010 100%);
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
+    min-height: 10px;
+}
+
+.month-bar.peak {
+    background: linear-gradient(180deg, #FFD700 0%, #E50914 100%);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.month-bar:hover {
+    transform: scaleY(1.05);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+}
+
+.month-label {
+    font-size: 0.7rem;
+    color: var(--netflix-gray);
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.peak-indicator {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--netflix-light);
+}
+
+/* When You Watch Grid */
+.when-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.chart-subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--netflix-light);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Day of Week Chart */
+.day-chart {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.day-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+}
+
+.day-row.favorite {
+    background: rgba(229, 9, 20, 0.1);
+    margin: 0 -1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+}
+
+.day-name {
+    width: 40px;
+    font-weight: 500;
+    color: var(--netflix-gray);
+    font-size: 0.9rem;
+}
+
+.day-row.favorite .day-name {
+    color: var(--netflix-red);
+    font-weight: 600;
+}
+
+.day-bar-bg {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.day-bar-fill {
+    height: 100%;
+    background: var(--gradient-red);
+    border-radius: 4px;
+    transition: width 0.8s ease-out;
+}
+
+.day-row.favorite .day-bar-fill {
+    background: linear-gradient(90deg, #E50914 0%, #FFD700 100%);
+}
+
+.day-count {
+    min-width: 40px;
+    text-align: right;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--netflix-gray);
+}
+
+.day-row.favorite .day-count {
+    color: var(--netflix-red);
+}
+
+.chart-note {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--netflix-gray);
+}
+
+/* Time of Day Chart */
+.time-chart {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.time-chart .chart-subtitle {
+    margin-bottom: 1rem;
+}
+
+.time-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+}
+
+.time-block.favorite {
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+.time-pct {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--netflix-red);
+    min-width: 70px;
+}
+
+.time-label {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+    color: var(--netflix-light);
+}
+
+.time-count {
+    color: var(--netflix-gray);
+    font-size: 0.85rem;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Year Summary Grid */
+.year-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.summary-card {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    border-color: rgba(229, 9, 20, 0.3);
+    transform: translateY(-3px);
+}
+
+.summary-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--netflix-gray);
+    background: rgba(229, 9, 20, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.summary-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--netflix-red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--netflix-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 /* Personality Badge */
 .personality-badge {
-  background: var(--gradient-red);
-  border-radius: 30px;
-  padding: 4rem;
-  text-align: center;
-  margin: 3rem auto;
-  max-width: 700px;
-  box-shadow: var(--shadow-glow);
-  position: relative;
-  overflow: hidden;
-}
-
-.personality-badge::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
-  animation: rotate 20s linear infinite;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(145deg, rgba(229, 9, 20, 0.1) 0%, rgba(20, 20, 20, 0.9) 100%);
+    border: 2px solid rgba(229, 9, 20, 0.3);
+    border-radius: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: var(--glow-red);
 }
 
 .personality-badge .type {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem;
-  font-weight: 400;
-  margin-bottom: 1rem;
-  letter-spacing: 4px;
-  position: relative;
-  z-index: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--netflix-red);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
 }
 
 .personality-badge .description {
-  font-size: 1.2rem;
-  opacity: 0.95;
-  line-height: 1.8;
-  font-weight: 300;
-  position: relative;
-  z-index: 1;
-}
-
-/* Month Chart */
-.month-bars {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  height: 250px;
-  padding: 2rem;
-  background: var(--netflix-card);
-  border-radius: 20px;
-  gap: 8px;
-}
-
-.month-bar {
-  flex: 1;
-  background: linear-gradient(to top, var(--netflix-red-dark), var(--netflix-red));
-  border-radius: 6px 6px 0 0;
-  min-height: 10px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.month-bar:hover {
-  filter: brightness(1.2);
-  box-shadow: 0 0 20px var(--netflix-red-glow);
-}
-
-.month-label {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--netflix-gray);
-  margin-top: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-
-/* Genre Pills */
-.genre-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.genre-pill {
-  background: rgba(229, 9, 20, 0.2);
-  border: 2px solid var(--netflix-red);
-  border-radius: 50px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.genre-pill:hover {
-  background: var(--netflix-red);
-  transform: scale(1.1);
-  box-shadow: 0 0 30px var(--netflix-red-glow);
-}
-
-.genre-pill .count {
-  opacity: 0.6;
-  margin-left: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--netflix-light);
+    line-height: 1.6;
+    font-style: italic;
+    opacity: 0.9;
 }
 
 /* Fun Facts */
 .fun-fact {
-  background: var(--netflix-card);
-  border-left: 4px solid var(--netflix-red);
-  padding: 2rem;
-  margin: 1.5rem 0;
-  border-radius: 0 16px 16px 0;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  transition: all 0.3s ease;
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-left: 4px solid var(--netflix-red);
+    padding: 1.5rem 2rem;
+    margin: 1rem 0;
+    border-radius: 0 12px 12px 0;
+    font-size: 1.1rem;
+    color: var(--netflix-light);
+    transition: all 0.3s ease;
 }
 
 .fun-fact:hover {
-  background: rgba(229, 9, 20, 0.1);
-  transform: translateX(5px);
+    transform: translateX(5px);
+    border-left-width: 6px;
+    box-shadow: -4px 0 20px rgba(229, 9, 20, 0.2);
 }
 
-.fun-fact .highlight {
-  color: var(--netflix-red);
-  font-weight: 700;
+/* Highlight Class - for numbers and key info */
+.highlight {
+    color: var(--netflix-red);
+    font-weight: 700;
 }
 
 /* Footer */
 .wrapped-footer {
-  text-align: center;
-  padding: 6rem 2rem;
-  background: var(--netflix-darker);
-  margin-top: 4rem;
+    text-align: center;
+    padding: 5rem 2rem;
+    background: var(--gradient-dark);
 }
 
 .wrapped-footer .tagline {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  letter-spacing: 4px;
-  color: var(--netflix-red);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--netflix-red);
+    margin-bottom: 1rem;
 }
 
 .wrapped-footer p {
-  color: var(--netflix-gray);
-  font-size: 1rem;
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  animation: bounce 2s infinite;
-}
-
-.scroll-indicator::before {
-  content: '';
-  display: block;
-  width: 30px;
-  height: 50px;
-  border: 2px solid rgba(255,255,255,0.5);
-  border-radius: 15px;
-  position: relative;
-}
-
-.scroll-indicator::after {
-  content: '';
-  display: block;
-  width: 6px;
-  height: 10px;
-  background: var(--netflix-red);
-  border-radius: 3px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scroll-dot 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(10px); }
-}
-
-@keyframes scroll-dot {
-  0%, 100% { opacity: 1; top: 8px; }
-  50% { opacity: 0.5; top: 20px; }
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-in {
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-/* Button styles */
-.btn-netflix {
-  display: inline-block;
-  padding: 1rem 2.5rem;
-  background: var(--netflix-red);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  letter-spacing: 1px;
-}
-
-.btn-netflix:hover {
-  background: var(--netflix-red-dark);
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px var(--netflix-red-glow);
-}
-
-/* Navbar styling */
-.navbar {
-  background: rgba(20, 20, 20, 0.95) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.navbar-brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem !important;
-  letter-spacing: 3px;
-  color: var(--netflix-red) !important;
-}
-
-.nav-link {
-  font-weight: 500;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: var(--netflix-red) !important;
+    color: var(--netflix-gray);
+    font-size: 1.1rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 3.5rem;
-    letter-spacing: 4px;
-  }
-  
-  .hero .year {
-    font-size: 7rem;
-  }
-  
-  .stat-card .number {
-    font-size: 3.5rem;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-  }
-  
-  .personality-badge {
-    padding: 2.5rem;
-  }
-  
-  .personality-badge .type {
-    font-size: 2rem;
-  }
+    .wrapped-section {
+        padding: 3rem 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat-card .number {
+        font-size: 2.5rem;
+    }
+    
+    .month-bars {
+        gap: 0.25rem;
+        height: 220px;
+    }
+    
+    .month-value {
+        font-size: 0.7rem;
+    }
+    
+    .month-label {
+        font-size: 0.6rem;
+    }
+    
+    .when-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .year-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .number-one-showcase {
+        padding: 2rem 1.5rem;
+    }
+    
+    .trophy-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero .year {
-    font-size: 5rem;
-  }
-  
-  .wrapped-section {
-    padding: 3rem 1rem;
-  }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .year-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation for scroll reveal */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wrapped-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Links */
+a {
+    color: var(--netflix-red);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: #ff1a1a;
+    text-decoration: underline;
 }
