@@ -42,7 +42,7 @@ This project creates a personalized "Year in Review" summary of your Netflix vie
 
 This project is open source. Feel free to fork it and create your own Recap!
 
-[View on GitHub](https://github.com/isfarbaset/netflix-wrapped){.btn .btn-primary style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--netflix-red); border: none; border-radius: 8px; text-decoration: none; color: white; font-weight: bold;"}
+[View on GitHub](https://github.com/isfarbaset/netflix-recap){.btn .btn-primary style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--netflix-red); border: none; border-radius: 8px; text-decoration: none; color: white; font-weight: bold;"}
 
 ---
 
