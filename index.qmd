@@ -269,7 +269,8 @@ display(HTML(f'''
         <!-- Slide 11: Outro -->
         <div class="slide" data-slide="10">
             <div class="slide-content outro">
-                <div class="netflix-logo">N</div>
+                <img src="images/netflix-logo.png" alt="Netflix" class="netflix-logo">
+                
                 <h2>Thanks for streaming</h2>
                 <p class="outro-text">Same time next year?</p>
                 <a href="https://github.com/isfarbaset/netflix-recap" target="_blank" class="github-btn" title="View on GitHub">
