@@ -263,11 +263,10 @@ display(HTML(f'''
         <div class="slide" data-slide="8">
             <div class="slide-content">
                 <div class="slide-label">Most binged</div>
-                <div class="streak-display">
-                    <div class="streak-number">{biggest_binge}</div>
-                    <div class="streak-label">episodes in one sitting</div>
+                <div class="binge-show-featured">{biggest_binge_show}</div>
+                <div class="binge-stat">
+                    <span class="binge-number">{biggest_binge}</span> episodes in one sitting
                 </div>
-                <div class="binge-show-name" style="margin-top: 1.5rem;">{biggest_binge_show}</div>
                 <div class="sub-stat">Now that's commitment</div>
             </div>
         </div>

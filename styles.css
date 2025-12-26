@@ -655,6 +655,29 @@ main.content, #quarto-content {
     }
 }
 
+/* Binge Show Featured - Center of Attention */
+.binge-show-featured {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 12vw, 5rem);
+    color: #fff;
+    margin: 1rem 0;
+    animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+    text-shadow: 0 0 40px rgba(229, 9, 20, 0.6);
+    line-height: 1;
+}
+
+.binge-stat {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+}
+
+.binge-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--netflix-red);
+}
+
 /* Binge Show Name - Zoom Effect */
 .binge-show-name {
     font-family: 'Bebas Neue', sans-serif;
