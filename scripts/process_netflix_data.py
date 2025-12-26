@@ -89,21 +89,13 @@ def determine_personality(stats):
     movies = stats.get('movies_watched', 0)
     episodes = stats.get('episodes_watched', 0)
     
-    # The Plot Twist Addict - lots of unique shows, doesn't stick to one
-    if unique_shows > 100:
-        personalities.append(("The Plot Twist Addict", "New show? Sign me up. Your watchlist is basically a buffet."))
-    
-    # The Marathon Runner - high streak and binge sessions
-    if streak > 20 and binge_sessions > 40:
-        personalities.append(("The Marathon Runner", "Consistency is your middle name. Rain or shine, you show up for your shows."))
-    
-    # The After Hours Explorer - late night viewing
-    if night_ratio > 0.5:
-        personalities.append(("The After Hours Explorer", "The world sleeps, you stream. Some stories just hit different at 2am."))
-    
     # The Serial Chiller - high binge count
     if binge_sessions > 50:
         personalities.append(("The Serial Chiller", "One episode is never enough. You don't watch shows, you experience them."))
+    
+    # The Plot Twist Addict - lots of unique shows, doesn't stick to one
+    if unique_shows > 100:
+        personalities.append(("The Plot Twist Addict", "New show? Sign me up. Your watchlist is basically a buffet."))
     
     # The Couch Critic - balanced movies and shows
     if movies > 150 and episodes > 400:
