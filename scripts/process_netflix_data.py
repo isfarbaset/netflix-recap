@@ -110,44 +110,28 @@ def generate_fun_facts(stats):
     facts = []
     total_hours = stats.get('estimated_hours', 0)
     
-    # Time comparisons
+    # Hours watched
     if total_hours > 0:
-        # Flights to Tokyo (14 hours)
-        tokyo_flights = round(total_hours / 14, 1)
-        facts.append(f"You could have flown to Tokyo {tokyo_flights} times with your watch time.")
-        
-        # Books read (avg 6 hours per book)
-        books = round(total_hours / 6)
-        facts.append(f"That's enough time to read approximately {books} books.")
-        
-        # Walking distance (avg 3mph walking)
-        miles = round(total_hours * 3)
-        facts.append(f"You could have walked {miles} miles instead. But where's the fun in that?")
+        facts.append({"icon": "clock", "stat": f"{round(total_hours)}", "label": "hours of entertainment"})
     
-    # Streak fact
-    streak = stats.get('longest_streak', 0)
-    if streak > 7:
-        facts.append(f"Your {streak}-day streak shows true dedication. Netflix should send you a medal!")
+    # Unique shows explored
+    unique = stats.get('unique_shows', 0)
+    if unique > 0:
+        facts.append({"icon": "grid", "stat": f"{unique}", "label": "different shows explored"})
     
-    # Binge fact
-    biggest_binge = stats.get('biggest_binge', 0)
-    biggest_binge_show = stats.get('biggest_binge_show', '')
-    if biggest_binge > 5:
-        facts.append(f"Your biggest binge? {biggest_binge} episodes of {biggest_binge_show} in one sitting. Legendary.")
-    
-    # Late night fact
+    # Late night viewing
     night_pct = stats.get('time_categories', {}).get('Night Owl (10pm-6am)', 0)
     total = sum(stats.get('time_categories', {}).values()) or 1
     night_pct_val = round((night_pct / total) * 100)
     if night_pct_val > 20:
-        facts.append(f"{night_pct_val}% of your watching happened after 10pm. Your melatonin is confused.")
+        facts.append({"icon": "moon", "stat": f"{night_pct_val}%", "label": "late night sessions"})
     
-    # Device fact
-    top_device = stats.get('top_device', '')
-    if top_device:
-        facts.append(f"Your go-to device? {top_device}. A person of culture.")
+    # Active streaming days
+    active = stats.get('active_days', 0)
+    if active > 0:
+        facts.append({"icon": "calendar", "stat": f"{active}", "label": "days you tuned in"})
     
-    return facts
+    return facts[:4]  # Limit to 4 for clean grid
 
 def process_netflix_data(data_dir):
     """Main function to process Netflix data and generate statistics."""

@@ -460,6 +460,45 @@ main.content, #quarto-content {
     margin: 0 auto;
 }
 
+/* Facts Grid */
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.fact-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+}
+
+.fact-icon {
+    margin-bottom: 0.5rem;
+}
+
+.fact-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--netflix-red);
+}
+
+.fact-stat {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--netflix-red);
+    line-height: 1.2;
+}
+
+.fact-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.25rem;
+}
+
 /* Facts List */
 .facts-list {
     text-align: left;
