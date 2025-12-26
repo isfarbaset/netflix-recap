@@ -601,3 +601,27 @@ main.content, #quarto-content {
         font-size: 1.2rem;
     }
 }
+
+/* Binge Show Name - Zoom Effect */
+.binge-show-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    color: var(--netflix-red);
+    margin-top: 1rem;
+    animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+    text-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

@@ -241,7 +241,8 @@ display(HTML(f'''
                         <span class="mini-label">active days</span>
                     </div>
                 </div>
-                <div class="sub-stat">Biggest binge: <span class="highlight">{biggest_binge}</span> episodes of {biggest_binge_show}</div>
+                <div class="sub-stat">Biggest binge: <span class="highlight">{biggest_binge}</span> episodes of</div>
+                <div class="binge-show-name">{biggest_binge_show}</div>
             </div>
         </div>
 
