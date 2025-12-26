@@ -89,13 +89,13 @@ def determine_personality(stats):
     movies = stats.get('movies_watched', 0)
     episodes = stats.get('episodes_watched', 0)
     
+    # The Plot Twist Enthusiast - lots of unique shows, doesn't stick to one
+    if unique_shows > 100:
+        personalities.append(("The Plot Twist Enthusiast", "New show? Sign me up. Your watchlist is basically a buffet."))
+    
     # The Serial Chiller - high binge count
     if binge_sessions > 50:
         personalities.append(("The Serial Chiller", "One episode is never enough. You don't watch shows, you experience them."))
-    
-    # The Plot Twist Addict - lots of unique shows, doesn't stick to one
-    if unique_shows > 100:
-        personalities.append(("The Plot Twist Addict", "New show? Sign me up. Your watchlist is basically a buffet."))
     
     # The Couch Critic - balanced movies and shows
     if movies > 150 and episodes > 400:
