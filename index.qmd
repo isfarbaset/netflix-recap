@@ -80,12 +80,11 @@ months_full = ["January", "February", "March", "April", "May", "June",
 monthly_html = ""
 for short, full in zip(months_short, months_full):
     count = monthly.get(full, 0)
-    # Direct proportional scaling - height reflects actual value
     height = (count / max_monthly) * 100 if max_monthly > 0 else 0
     is_peak = full == peak_month
     monthly_html += f'''<div class="bar-col {"peak-col" if is_peak else ""}">
         <div class="bar-value">{count}</div>
-        <div class="bar {"peak" if is_peak else ""}" style="height: {height}%;"></div>
+        <div class="bar-wrapper"><div class="bar {"peak" if is_peak else ""}" style="height: {height}%;"></div></div>
         <span>{short}</span>
     </div>'''
 

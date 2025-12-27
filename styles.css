@@ -341,10 +341,8 @@ main.content, #quarto-content {
 
 .bar-chart {
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
     gap: 4px;
-    height: 180px;
     padding: 0 0.5rem;
 }
 
@@ -381,11 +379,18 @@ main.content, #quarto-content {
     font-weight: 700;
 }
 
+.bar-wrapper {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+}
+
 .bar {
     width: 100%;
     background: linear-gradient(180deg, rgba(229, 9, 20, 0.8) 0%, rgba(229, 9, 20, 0.4) 100%);
     border-radius: 4px 4px 0 0;
-    min-height: 8px;
+    min-height: 4px;
     transition: height 0.5s ease-out;
 }
 
