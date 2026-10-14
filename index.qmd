@@ -147,9 +147,9 @@ display(HTML(f'''
         <!-- Slide 1: Intro -->
         <div class="slide active" data-slide="0">
             <div class="slide-content intro">
-                <img src="images/netflix-logo.png" alt="Netflix" class="netflix-logo">
-                <h1>YOUR {year} <span class="netflix-text">NETFLIX</span> RECAP</h1>
-                <p class="subtitle">Let's see what you've been watching...</p>
+                <h1>MY {year} <span class="netflix-text">STREAMING</span> RECAP</h1>
+                <p class="subtitle">A personal data project by Isfar Baset, built from my own viewing history.</p>
+                <p class="subtitle" style="font-size: 0.85rem; opacity: 0.7;">Not affiliated with or endorsed by Netflix.</p>
                 <div class="scroll-hint">
                     <span>Tap to start</span>
                     <div class="arrow">→</div>
@@ -297,9 +297,7 @@ display(HTML(f'''
         <!-- Slide 12: Outro -->
         <div class="slide" data-slide="11">
             <div class="slide-content outro">
-                <img src="images/netflix-logo.png" alt="Netflix" class="netflix-logo">
-                
-                <h2>Thanks for streaming</h2>
+                <h2>Thanks for scrolling</h2>
                 <p class="outro-text">Same time next year?</p>
                 <a href="https://github.com/isfarbaset/netflix-recap" target="_blank" class="github-btn" title="View on GitHub">
                     <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor">

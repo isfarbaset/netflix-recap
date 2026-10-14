@@ -5,26 +5,21 @@ format:
     toc: false
 ---
 
-## About Netflix Recap
+## About this project
 
-This project creates a personalized "Year in Review" summary of your Netflix viewing habits, similar to end-of-year recaps from various streaming services.
+This is a personal data project by Isfar Baset: a "year in review" built from my own exported viewing history, in the style of the end-of-year recaps many apps publish.
+
+**This site is not affiliated with, endorsed by, or sponsored by Netflix, Inc.** It never asks for your account, password, or any personal information, and it has no login of any kind.
 
 ### How It Works
 
-1. **Download your Netflix data** from your account settings
-2. **Run the processing script** to analyze your viewing history
-3. **View your personalized Recap** with stats, insights, and fun facts
+1. **Export your own viewing history** from your streaming account's privacy settings
+2. **Run the processing script** from the GitHub repo on your own computer
+3. **View your personalized recap**, generated locally
 
-### Getting Your Netflix Data
+### Getting Your Data
 
-1. Go to [Netflix.com](https://netflix.com) and sign in
-2. Click your profile icon > **Account**
-3. Scroll down to **Security & Privacy**
-4. Click **Download your personal information**
-5. Select **Viewing Activity** (or download all)
-6. Wait for the email from Netflix (can take up to 30 days)
-7. Download and extract the ZIP file
-8. Find `ViewingActivity.csv` and place it in the `data/` folder
+Most streaming services, Netflix included, let you request a copy of your personal data from the privacy section of your account settings. Request the viewing activity export, then place `ViewingActivity.csv` in the `data/` folder of your local copy of the repo. Full steps are in the [README on GitHub](https://github.com/isfarbaset/netflix-recap).
 
 ### Privacy
 
@@ -42,7 +37,7 @@ This project creates a personalized "Year in Review" summary of your Netflix vie
 
 This project is open source. Feel free to fork it and create your own Recap!
 
-[View on GitHub](https://github.com/isfarbaset/netflix-recap){.btn .btn-primary style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--netflix-red); border: none; border-radius: 8px; text-decoration: none; color: white; font-weight: bold;"}
+[View on GitHub](https://github.com/isfarbaset/netflix-recap){.btn .btn-primary style="display: inline-block; padding: 0.75rem 1.5rem; background: #E8A33D; border: none; border-radius: 8px; text-decoration: none; color: white; font-weight: bold;"}
 
 ---
 

@@ -3,8 +3,8 @@ project:
   output-dir: docs
 
 website:
-  title: "Netflix Recap 2025"
-  description: "Your Year in Streaming"
+  title: "Isfar's Streaming Recap 2025"
+  description: "A personal data project: one year of my own viewing history, analyzed. Not affiliated with Netflix."
   navbar:
     background: "#141414"
     foreground: "#FFFFFF"
@@ -17,6 +17,8 @@ website:
         text: Insights
       - href: about.qmd
         text: About
+  page-footer:
+    center: "A personal data project by Isfar Baset, built from my own exported viewing history. Not affiliated with, endorsed by, or sponsored by Netflix, Inc."
 
 format:
   html:

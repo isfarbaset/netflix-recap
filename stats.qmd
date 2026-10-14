@@ -139,7 +139,7 @@ for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", 
     count = dow.get(day, 0)
     width = (count / max_dow) * 100 if max_dow > 0 else 0
     is_peak = count == max_dow
-    color = "var(--netflix-red)" if is_peak else "rgba(229, 9, 20, 0.5)"
+    color = "var(--netflix-red)" if is_peak else "rgba(232, 163, 61, 0.5)"
     
     print(f'''
     <div style="margin: 1rem 0;">

@@ -1,7 +1,7 @@
 /* Netflix Recap - Carousel Edition */
 
 :root {
-    --netflix-red: #E50914;
+    --netflix-red: #E8A33D;
     --netflix-black: #141414;
     --netflix-dark: #0a0a0a;
     --netflix-gray: #808080;
@@ -108,7 +108,7 @@ main.content, #quarto-content {
     height: 120px;
     max-width: 300px;
     margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 40px rgba(229, 9, 20, 0.6));
+    filter: drop-shadow(0 0 40px rgba(232, 163, 61, 0.6));
     animation: pulseGlow 2s ease-in-out infinite;
 }
 
@@ -121,8 +121,8 @@ main.content, #quarto-content {
 }
 
 @keyframes pulseGlow {
-    0%, 100% { text-shadow: 0 0 60px rgba(229, 9, 20, 0.6); }
-    50% { text-shadow: 0 0 100px rgba(229, 9, 20, 0.9); }
+    0%, 100% { text-shadow: 0 0 60px rgba(232, 163, 61, 0.6); }
+    50% { text-shadow: 0 0 100px rgba(232, 163, 61, 0.9); }
 }
 
 /* Intro & Outro */
@@ -186,7 +186,7 @@ main.content, #quarto-content {
     font-size: clamp(5rem, 20vw, 10rem);
     color: var(--netflix-red);
     line-height: 1;
-    text-shadow: 0 0 40px rgba(229, 9, 20, 0.4);
+    text-shadow: 0 0 40px rgba(232, 163, 61, 0.4);
 }
 
 .big-label {
@@ -396,7 +396,7 @@ main.content, #quarto-content {
 
 .bar {
     width: 100%;
-    background: linear-gradient(180deg, rgba(229, 9, 20, 0.8) 0%, rgba(229, 9, 20, 0.4) 100%);
+    background: linear-gradient(180deg, rgba(232, 163, 61, 0.8) 0%, rgba(232, 163, 61, 0.4) 100%);
     border-radius: 4px 4px 0 0;
     min-height: 4px;
     transition: height 0.5s ease-out;
@@ -425,8 +425,8 @@ main.content, #quarto-content {
 }
 
 .time-slot.active {
-    background: rgba(229, 9, 20, 0.2);
-    border: 1px solid rgba(229, 9, 20, 0.4);
+    background: rgba(232, 163, 61, 0.2);
+    border: 1px solid rgba(232, 163, 61, 0.4);
 }
 
 .time-icon {
@@ -453,8 +453,8 @@ main.content, #quarto-content {
 
 /* Streak Display */
 .streak-display {
-    background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(20, 20, 20, 0.9) 100%);
-    border: 2px solid rgba(229, 9, 20, 0.3);
+    background: linear-gradient(135deg, rgba(232, 163, 61, 0.2) 0%, rgba(20, 20, 20, 0.9) 100%);
+    border: 2px solid rgba(232, 163, 61, 0.3);
     border-radius: 20px;
     padding: 2rem 3rem;
     display: inline-block;
@@ -597,7 +597,7 @@ main.content, #quarto-content {
 
 .nav-btn:hover {
     border-color: var(--netflix-red);
-    background: rgba(229, 9, 20, 0.3);
+    background: rgba(232, 163, 61, 0.3);
 }
 
 .dots {
@@ -698,7 +698,7 @@ main.content, #quarto-content {
     color: #fff;
     margin: 1rem 0;
     animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
-    text-shadow: 0 0 40px rgba(229, 9, 20, 0.6);
+    text-shadow: 0 0 40px rgba(232, 163, 61, 0.6);
     line-height: 1;
 }
 
@@ -721,7 +721,7 @@ main.content, #quarto-content {
     color: var(--netflix-red);
     margin-top: 1rem;
     animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
-    text-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+    text-shadow: 0 0 30px rgba(232, 163, 61, 0.5);
 }
 
 @keyframes zoomIn {
@@ -742,5 +742,5 @@ main.content, #quarto-content {
 .personality-icon img {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.5));
+    filter: drop-shadow(0 0 20px rgba(232, 163, 61, 0.5));
 }
