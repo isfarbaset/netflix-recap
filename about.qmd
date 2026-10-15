@@ -37,7 +37,7 @@ Most streaming services, Netflix included, let you request a copy of your person
 
 This project is open source. Feel free to fork it and create your own Recap!
 
-[View on GitHub](https://github.com/isfarbaset/netflix-recap){.btn .btn-primary style="display: inline-block; padding: 0.75rem 1.5rem; background: #E8A33D; border: none; border-radius: 8px; text-decoration: none; color: white; font-weight: bold;"}
+[source code →](https://github.com/isfarbaset/netflix-recap){.source-link}
 
 ---
 

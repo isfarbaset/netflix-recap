@@ -6,8 +6,8 @@ website:
   title: "Isfar's Streaming Recap 2025"
   description: "A personal data project: one year of my own viewing history, analyzed. Not affiliated with Netflix."
   navbar:
-    background: "#141414"
-    foreground: "#FFFFFF"
+    background: "#f4efe6"
+    foreground: "#231d19"
     left:
       - href: index.qmd
         text: Home
@@ -23,7 +23,7 @@ website:
 format:
   html:
     theme:
-      dark: darkly
+      light: cosmo
     css: styles.css
     toc: false
     page-layout: full

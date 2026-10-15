@@ -147,13 +147,11 @@ display(HTML(f'''
         <!-- Slide 1: Intro -->
         <div class="slide active" data-slide="0">
             <div class="slide-content intro">
-                <h1>MY {year} <span class="netflix-text">STREAMING</span> RECAP</h1>
+                <div class="slide-label">A year on the couch</div>
+                <h1>My {year} <span class="title-mark">streaming</span> recap</h1>
                 <p class="subtitle">A personal data project by Isfar Baset, built from my own viewing history.</p>
-                <p class="subtitle" style="font-size: 0.85rem; opacity: 0.7;">Not affiliated with or endorsed by Netflix.</p>
-                <div class="scroll-hint">
-                    <span>Tap to start</span>
-                    <div class="arrow">→</div>
-                </div>
+                <p class="disclaimer">Not affiliated with or endorsed by Netflix.</p>
+                <div class="scroll-hint note">tap to start <span class="arrow">→</span></div>
             </div>
         </div>
 
@@ -164,7 +162,7 @@ display(HTML(f'''
                 <div class="big-number">{hours:,.0f}</div>
                 <div class="big-label">hours streaming</div>
                 <div class="sub-stat">That's <span class="highlight">{days:.1f} days</span> of your life.</div>
-                <div class="sub-stat">Worth it? Absolutely.</div>
+                <div class="note">worth it? absolutely.</div>
             </div>
         </div>
 
@@ -199,7 +197,7 @@ display(HTML(f'''
                     <span class="divider">·</span>
                     <span class="highlight">{round(top_minutes/60, 1)}</span> hours
                 </div>
-                <div class="sub-stat">You really couldn't get enough</div>
+                <div class="note">you really couldn't get enough</div>
             </div>
         </div>
 
@@ -234,10 +232,10 @@ display(HTML(f'''
                 <div class="time-grid">
                     {time_html}
                 </div>
-                <div class="sub-stat" style="margin-top: 2rem;">
+                <div class="sub-stat" style="margin-top: 28px;">
                     <span class="highlight">{night_pct}%</span> of watching after 10pm
                 </div>
-                <div class="sub-stat faded">Your melatonin is confused</div>
+                <div class="note">your melatonin is confused</div>
             </div>
         </div>
 
@@ -249,7 +247,7 @@ display(HTML(f'''
                     <div class="streak-number">{streak}</div>
                     <div class="streak-label">day streak</div>
                 </div>
-                <div class="stat-row" style="margin-top: 2rem;">
+                <div class="stat-row" style="margin-top: 32px;">
                     <div class="mini-stat">
                         <span class="mini-number">{binges}</span>
                         <span class="mini-label">binge sessions</span>
@@ -270,7 +268,7 @@ display(HTML(f'''
                 <div class="binge-stat">
                     <span class="binge-number">{biggest_binge}</span> episodes in one sitting
                 </div>
-                <div class="sub-stat">Now that's commitment</div>
+                <div class="note">now that's commitment</div>
             </div>
         </div>
 
@@ -278,7 +276,7 @@ display(HTML(f'''
         <div class="slide" data-slide="9">
             <div class="slide-content">
                 <div class="slide-label">Your streaming personality</div>
-                <div class="personality-icon"><img src="images/chiller.svg" alt="Serial Chiller"></div>
+                <div class="personality-icon"><img src="images/chiller.svg" alt=""></div>
                 <div class="personality-type">{personality.get('type', 'The Streamer')}</div>
                 <div class="personality-desc">{personality.get('description', '')}</div>
             </div>
@@ -297,19 +295,19 @@ display(HTML(f'''
         <!-- Slide 12: Outro -->
         <div class="slide" data-slide="11">
             <div class="slide-content outro">
-                <h2>Thanks for scrolling</h2>
-                <p class="outro-text">Same time next year?</p>
-                <a href="https://github.com/isfarbaset/netflix-recap" target="_blank" class="github-btn">source code
-                </a>
+                <div class="slide-label">The end</div>
+                <h2>Thanks for <span class="title-mark">scrolling</span></h2>
+                <p class="note">same time next year?</p>
+                <a href="https://github.com/isfarbaset/netflix-recap" target="_blank" rel="noopener" class="source-link">source code →</a>
             </div>
         </div>
     </div>
 
     <!-- Navigation -->
     <div class="carousel-nav">
-        <button class="nav-btn prev" onclick="prevSlide()">‹</button>
+        <button class="nav-btn prev" onclick="prevSlide()" aria-label="Previous slide">‹</button>
         <div class="dots"></div>
-        <button class="nav-btn next" onclick="nextSlide()">›</button>
+        <button class="nav-btn next" onclick="nextSlide()" aria-label="Next slide">›</button>
     </div>
 
     <!-- Progress bar -->

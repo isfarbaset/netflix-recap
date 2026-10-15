@@ -90,7 +90,7 @@ import calendar
 monthly = stats.get("monthly_breakdown", {})
 max_val = max(monthly.values()) if monthly.values() else 1
 
-print('<div style="background: var(--netflix-dark); border-radius: 16px; padding: 2rem;">')
+print('<div class="page-panel">')
 print('<div class="month-bars" style="height: 250px;">')
 for month in calendar.month_name[1:]:
     count = monthly.get(month, 0)
@@ -133,21 +133,21 @@ Which days did you watch the most?
 dow = stats.get("day_of_week", {})
 max_dow = max(dow.values()) if dow.values() else 1
 
-print('<div style="background: var(--netflix-dark); border-radius: 16px; padding: 2rem;">')
+print('<div class="page-panel">')
 
 for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]:
     count = dow.get(day, 0)
     width = (count / max_dow) * 100 if max_dow > 0 else 0
     is_peak = count == max_dow
-    color = "var(--netflix-red)" if is_peak else "rgba(232, 163, 61, 0.5)"
+    color = "var(--peach)" if is_peak else "var(--sky)"
     
     print(f'''
     <div style="margin: 1rem 0;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
             <span style="font-weight: {'bold' if is_peak else 'normal'};">{day}</span>
-            <span style="color: var(--netflix-gray);">{count}</span>
+            <span style="color: var(--soft);">{count}</span>
         </div>
-        <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 24px; overflow: hidden;">
+        <div style="background: var(--rule); border-radius: 4px; height: 24px; overflow: hidden;">
             <div style="background: {color}; height: 100%; width: {width}%; border-radius: 4px; transition: width 0.5s ease;"></div>
         </div>
     </div>

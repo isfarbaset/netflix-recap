@@ -36,14 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7dce5a4e2e9af7ff76c28abae6570be0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-b6b7afb265ef07c364656c6b3026cc9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-7dce5a4e2e9af7ff76c28abae6570be0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-61b6a97b0badfce7cc61a0316f6bd119.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,167 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = true;
-    const darkModeDefault = authorPrefersDark;
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -276,7 +112,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -287,13 +122,12 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">MY 2025 <span class="netflix-text">STREAMING</span> RECAP</h1></header>
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-
-<div id="28905859" class="cell" data-execution_count="2">
+<div id="8b5e6903" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 
 <div class="carousel-container">
@@ -301,13 +135,11 @@ ul.task-list li input[type="checkbox"] {
         <!-- Slide 1: Intro -->
         <div class="slide active" data-slide="0">
             <div class="slide-content intro">
-                
+                <div class="slide-label">A year on the couch</div>
+                <h1>My 2025 <span class="title-mark">streaming</span> recap</h1>
                 <p class="subtitle">A personal data project by Isfar Baset, built from my own viewing history.</p>
-                <p class="subtitle" style="font-size: 0.85rem; opacity: 0.7;">Not affiliated with or endorsed by Netflix.</p>
-                <div class="scroll-hint">
-                    <span>Tap to start</span>
-                    <div class="arrow">→</div>
-                </div>
+                <p class="disclaimer">Not affiliated with or endorsed by Netflix.</p>
+                <div class="scroll-hint note">tap to start <span class="arrow">→</span></div>
             </div>
         </div>
 
@@ -318,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
                 <div class="big-number">380</div>
                 <div class="big-label">hours streaming</div>
                 <div class="sub-stat">That's <span class="highlight">15.8 days</span> of your life.</div>
-                <div class="sub-stat">Worth it? Absolutely.</div>
+                <div class="note">worth it? absolutely.</div>
             </div>
         </div>
 
@@ -353,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
                     <span class="divider">·</span>
                     <span class="highlight">21.7</span> hours
                 </div>
-                <div class="sub-stat">You really couldn't get enough</div>
+                <div class="note">you really couldn't get enough</div>
             </div>
         </div>
 
@@ -500,10 +332,10 @@ ul.task-list li input[type="checkbox"] {
     </div>
     
                 </div>
-                <div class="sub-stat" style="margin-top: 2rem;">
+                <div class="sub-stat" style="margin-top: 28px;">
                     <span class="highlight">61%</span> of watching after 10pm
                 </div>
-                <div class="sub-stat faded">Your melatonin is confused</div>
+                <div class="note">your melatonin is confused</div>
             </div>
         </div>
 
@@ -515,7 +347,7 @@ ul.task-list li input[type="checkbox"] {
                     <div class="streak-number">36</div>
                     <div class="streak-label">day streak</div>
                 </div>
-                <div class="stat-row" style="margin-top: 2rem;">
+                <div class="stat-row" style="margin-top: 32px;">
                     <div class="mini-stat">
                         <span class="mini-number">60</span>
                         <span class="mini-label">binge sessions</span>
@@ -536,7 +368,7 @@ ul.task-list li input[type="checkbox"] {
                 <div class="binge-stat">
                     <span class="binge-number">5</span> episodes in one sitting
                 </div>
-                <div class="sub-stat">Now that's commitment</div>
+                <div class="note">now that's commitment</div>
             </div>
         </div>
 
@@ -544,9 +376,9 @@ ul.task-list li input[type="checkbox"] {
         <div class="slide" data-slide="9">
             <div class="slide-content">
                 <div class="slide-label">Your streaming personality</div>
-                <div class="personality-icon"><img src="images/chiller.svg" alt="Serial Chiller"></div>
+                <div class="personality-icon"><img src="images/chiller.svg" alt=""></div>
                 <div class="personality-type">The Plot Twist Enthusiast</div>
-                <div class="personality-desc">New show? Sign me up. Your watchlist is basically a buffet.</div>
+                <div class="personality-desc">New show? I'm in. Your watchlist is basically a buffet.</div>
             </div>
         </div>
 
@@ -579,19 +411,19 @@ ul.task-list li input[type="checkbox"] {
         <!-- Slide 12: Outro -->
         <div class="slide" data-slide="11">
             <div class="slide-content outro">
-                <h2 class="anchored">Thanks for scrolling</h2>
-                <p class="outro-text">Same time next year?</p>
-                <a href="https://github.com/isfarbaset/netflix-recap" target="_blank" class="github-btn">source code
-                </a>
+                <div class="slide-label">The end</div>
+                <h2 class="anchored">Thanks for <span class="title-mark">scrolling</span></h2>
+                <p class="note">same time next year?</p>
+                <a href="https://github.com/isfarbaset/netflix-recap" target="_blank" rel="noopener" class="source-link">source code →</a>
             </div>
         </div>
     </div>
 
     <!-- Navigation -->
     <div class="carousel-nav">
-        <button class="nav-btn prev" onclick="prevSlide()">‹</button>
+        <button class="nav-btn prev" onclick="prevSlide()" aria-label="Previous slide">‹</button>
         <div class="dots"></div>
-        <button class="nav-btn next" onclick="nextSlide()">›</button>
+        <button class="nav-btn next" onclick="nextSlide()" aria-label="Next slide">›</button>
     </div>
 
     <!-- Progress bar -->
@@ -683,19 +515,6 @@ document.querySelector('.carousel').addEventListener('touchend', e => {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

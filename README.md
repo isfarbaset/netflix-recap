@@ -144,11 +144,15 @@ Edit `styles.css` to change colors, fonts, or layout. Key CSS variables:
 
 ```css
 :root {
-    --netflix-red: #E50914;
-    --netflix-black: #141414;
-    --netflix-dark: #0a0a0a;
-    --netflix-gray: #808080;
-    --netflix-light: #e5e5e5;
+    --paper: #f4efe6;   /* page */
+    --ink: #231d19;     /* text */
+    --soft: #7a6e63;    /* secondary text */
+    --accent: #8b3a2b;  /* handwritten notes, peak values */
+    --butter: #f2d58a;  /* pastels for marks, tape and bars */
+    --sky: #a9cbe8;
+    --rose: #efb0bd;
+    --mint: #b3dcc2;
+    --peach: #f3bf98;
 }
 ```
 

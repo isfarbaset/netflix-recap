@@ -91,7 +91,7 @@ def determine_personality(stats):
     
     # The Plot Twist Enthusiast - lots of unique shows, doesn't stick to one
     if unique_shows > 100:
-        personalities.append(("The Plot Twist Enthusiast", "New show? Sign me up. Your watchlist is basically a buffet."))
+        personalities.append(("The Plot Twist Enthusiast", "New show? I'm in. Your watchlist is basically a buffet."))
     
     # The Serial Chiller - high binge count
     if binge_sessions > 50:
