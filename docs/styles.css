@@ -641,14 +641,15 @@ main.content, #quarto-content {
     transition: width 0.3s ease;
 }
 
-/* GitHub Button */
+/* Source code link (plain text on purpose: no third-party logos) */
 .github-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
     background: rgba(255, 255, 255, 0.1);
     color: var(--netflix-gray);
     margin-top: 2rem;
